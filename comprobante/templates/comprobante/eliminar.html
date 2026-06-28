@@ -1,0 +1,18 @@
+{% load static %}
+{% include 'private/header.html' %}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Eliminar Comprobante</h1>
+    <div class="card mb-4">
+        <div class="card-body">
+            <p>¿Estás seguro que deseas eliminar el comprobante <strong>{{ comprobante.numero_comprobante }}</strong>?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                <a href="{% url 'lista_comprobantes' %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'private/footer.html' %}

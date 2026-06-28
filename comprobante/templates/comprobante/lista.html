@@ -1,0 +1,42 @@
+{% load static %}
+{% include 'private/header.html' %}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Comprobantes de Servicio</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a href="{% url 'crear_comprobante' %}" class="btn btn-primary">Nuevo Comprobante</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Descripción</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comprobante in comprobantes %}
+                    <tr>
+                        <td>{{ comprobante.numero_comprobante }}</td>
+                        <td>{{ comprobante.fecha }}</td>
+                        <td>{{ comprobante.cliente }}</td>
+                        <td>{{ comprobante.descripcion }}</td>
+                        <td>{{ comprobante.total }}</td>
+                        <td>
+                            <a href="{% url 'editar_comprobante' comprobante.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{% url 'eliminar_comprobante' comprobante.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% include 'private/footer.html' %}
