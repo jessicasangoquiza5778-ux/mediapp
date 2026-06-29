@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login, logout
 
 def hola (request):
     return render(request,'index.html')
@@ -46,3 +47,7 @@ def recuperar(request):
 
 def servicio(request):
     return render(request, 'private/servicio.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

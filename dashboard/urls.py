@@ -16,4 +16,5 @@ urlpatterns = [
     path('orden-trabajo/eliminar/<int:id>/', views.eliminar_orden, name='eliminar_orden'),
     path('comprobante/', views.comprobante_servicio, name='comprobante_servicio'),
     path('guardar-comprobante/', views.guardar_comprobante, name='guardar_comprobante'),
+    
 ]

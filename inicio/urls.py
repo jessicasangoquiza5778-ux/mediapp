@@ -16,5 +16,6 @@ urlpatterns= [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('recuperar/', views.recuperar, name='recuperar'),
     path('servicio/', views.servicio, name='servicio'),
-
+    path('logout/', views.logout_view, name='logout'),
+    path('', views.dashboard, name='dashboard'),
 ]

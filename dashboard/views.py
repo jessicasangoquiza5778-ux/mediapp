@@ -120,3 +120,7 @@ def guardar_comprobante(request):
         messages.success(request, "Comprobante generado con éxito")
         return redirect('comprobante_servicio')
     return redirect('comprobante_servicio')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')  # 'login' debe ser el name= definido en inicio/urls.py
