@@ -1,0 +1,55 @@
+{% load static %}
+{% include 'private/header.html' %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container mt-4">
+            <h1 class="mb-4">Editar Vehículo</h1>
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                    <label>Placa</label>
+                    <input type="text" name="placaVehiculoEdit" class="form-control" value="{{ vehiculo.placa_vehiculo }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Marca</label>
+                    <input type="text" name="marcaVehiculoEdit" class="form-control" value="{{ vehiculo.marca_vehiculo }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Modelo</label>
+                    <input type="text" name="modeloVehiculoEdit" class="form-control" value="{{ vehiculo.modelo_vehiculo }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Año</label>
+                    <input type="number" name="anioVehiculoEdit" class="form-control" value="{{ vehiculo.anio_vehiculo }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Color</label>
+                    <input type="text" name="colorVehiculoEdit" class="form-control" value="{{ vehiculo.color_vehiculo }}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Tipo de Vehículo</label>
+                    <select name="tipoVehiculoEdit" class="form-control">
+                        <option value="automovil" {% if vehiculo.tipo_vehiculo == "automovil" %}selected{% endif %}>Automóvil</option>
+                        <option value="camioneta" {% if vehiculo.tipo_vehiculo == "camioneta" %}selected{% endif %}>Camioneta</option>
+                        <option value="suv" {% if vehiculo.tipo_vehiculo == "suv" %}selected{% endif %}>SUV</option>
+                        <option value="camion" {% if vehiculo.tipo_vehiculo == "camion" %}selected{% endif %}>Camión</option>
+                        <option value="moto" {% if vehiculo.tipo_vehiculo == "moto" %}selected{% endif %}>Moto</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Estado</label>
+                    <select name="estadoVehiculoEdit" class="form-control">
+                        <option value="activo" {% if vehiculo.estado_vehiculo == "activo" %}selected{% endif %}>Activo</option>
+                        <option value="inactivo" {% if vehiculo.estado_vehiculo == "inactivo" %}selected{% endif %}>Inactivo</option>
+                    </select>
+                </div>
+                <button class="btn btn-warning rounded-pill">GUARDAR</button>
+                <a href="{% url 'listar_vehiculos' %}" class="btn btn-danger rounded-pill">CANCELAR</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'private/footer.html' %}

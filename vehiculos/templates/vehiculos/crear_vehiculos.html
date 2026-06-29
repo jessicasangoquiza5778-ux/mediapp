@@ -1,0 +1,47 @@
+{% load static %}
+{% include 'private/header.html' %}
+
+<div class="container mt-4">
+    <h2>Registrar Vehículo</h2>
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Placa</label>
+            <input type="text" name="placaVehiculo" class="form-control" required>
+
+            <label>Marca</label>
+            <input type="text" name="marcaVehiculo" class="form-control" required>
+
+            <label>Modelo</label>
+            <input type="text" name="modeloVehiculo" class="form-control" required>
+
+            <label>Año</label>
+            <input type="number" name="anioVehiculo" class="form-control" required>
+
+            <label>Color</label>
+            <input type="text" name="colorVehiculo" class="form-control" required>
+
+            <label>Tipo de Vehículo</label>
+            <select name="tipoVehiculo" class="form-control">
+                <option value="">Seleccione</option>
+                <option value="automovil">Automóvil</option>
+                <option value="camioneta">Camioneta</option>
+                <option value="suv">SUV</option>
+                <option value="camion">Camión</option>
+                <option value="moto">Moto</option>
+            </select>
+
+            <label>Estado</label>
+            <select name="estadoVehiculo" class="form-control">
+                <option value="">Seleccione</option>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">GUARDAR</button>
+        <a href="{% url 'listar_vehiculos' %}" class="btn btn-danger">CANCELAR</a>
+    </form>
+</div>
+
+{% include 'private/footer.html' %}
