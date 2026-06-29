@@ -1,120 +1,374 @@
-<!-- Dashboard Template -->
 {% include 'private/header.html' %}
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.page { padding: 1.5rem; background: #f4f4f2; min-height: 100vh; font-family: system-ui, sans-serif; }
+h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; color: #0b0b0b; }
+.breadcrumb { font-size: 13px; color: #52514e; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 6px; }
+.breadcrumb::before { content: ""; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+
+/* KPIs */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+.kpi { border-radius: 12px; padding: 1rem 1.25rem; position: relative; overflow: hidden; }
+.kpi-blue  { background: #2a78d6; color: #fff; }
+.kpi-amber { background: #eda100; color: #fff; }
+.kpi-green { background: #1baf7a; color: #fff; }
+.kpi-red   { background: #d03b3b; color: #fff; }
+.kpi-label { font-size: 12px; opacity: .8; margin-bottom: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; }
+.kpi-value { font-size: 28px; font-weight: 500; line-height: 1; }
+.kpi-sub   { font-size: 12px; opacity: .75; margin-top: 6px; }
+.kpi-link  { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.2); margin-top: 12px; padding-top: 10px; font-size: 12px; opacity: .85; color: inherit; text-decoration: none; }
+.kpi-icon  { position: absolute; right: 1rem; top: 50%; transform: translateY(-60%); font-size: 44px; opacity: .12; }
+
+/* Cards */
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 1.5rem; }
+.card { background: #fff; border: 0.5px solid rgba(11,11,11,.1); border-radius: 12px; overflow: hidden; }
+.card-head { padding: .9rem 1.25rem; border-bottom: 0.5px solid rgba(11,11,11,.1); display: flex; align-items: center; justify-content: space-between; }
+.card-head-left { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #0b0b0b; }
+.card-head-left i { font-size: 16px; color: #52514e; }
+.badge { font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 500; }
+.badge-green { background: #e1f5ee; color: #0f6e56; }
+.badge-blue  { background: #e6f1fb; color: #185fa5; }
+.card-body { padding: 1.25rem; }
+.chart-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+.chart-big   { font-size: 24px; font-weight: 500; color: #0b0b0b; }
+.chart-delta { font-size: 12px; font-weight: 500; color: #1baf7a; }
+.legend      { display: flex; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+.leg-item    { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #52514e; }
+.leg-dot     { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.chart-wrap  { position: relative; width: 100%; height: 190px; }
+
+/* Tabla */
+.table-card .card-body { padding: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th { padding: .75rem 1.25rem; text-align: left; font-size: 11px; font-weight: 500; color: #52514e; text-transform: uppercase; letter-spacing: .05em; border-bottom: 0.5px solid rgba(11,11,11,.1); background: #f7f6f3; }
+tbody tr { border-bottom: 0.5px solid rgba(11,11,11,.08); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #f7f6f3; }
+tbody td { padding: .75rem 1.25rem; color: #0b0b0b; }
+tbody td:first-child { font-weight: 500; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+.tag-blue  { background: #e6f1fb; color: #185fa5; }
+.tag-green { background: #e1f5ee; color: #0f6e56; }
+.tag-amber { background: #faeeda; color: #633806; }
+.tag-red   { background: #fcebeb; color: #791f1f; }
+.tag-teal  { background: #e1f5ee; color: #085041; }
+.salary { font-family: monospace; font-size: 12px; color: #52514e; }
+</style>
+
 <main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-4">Estadísticas</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Revisa las estadísticas de cada mes</li>
-        </ol>
-        <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Tarjeta Primaria</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Ver Detalles</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Tarjeta de Advertencia</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Ver Detalles</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Tarjeta de Éxito</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Ver Detalles</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Tarjeta de Peligro</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">Ver Detalles</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
+  <div class="page">
+    <h1>Estadísticas</h1>
+    <div class="breadcrumb">Revisa las estadísticas de cada mes</div>
+
+    <!-- KPIs -->
+    <div class="kpi-grid">
+      <div class="kpi kpi-blue">
+        <i class="fas fa-chart-line kpi-icon"></i>
+        <div class="kpi-label">Ingresos</div>
+        <div class="kpi-value">$84.2k</div>
+        <div class="kpi-sub">↑ 12.4% vs mes anterior</div>
+        <a class="kpi-link" href="#">Ver Detalles <i class="fas fa-angle-right"></i></a>
+      </div>
+      <div class="kpi kpi-amber">
+        <i class="fas fa-exclamation-circle kpi-icon"></i>
+        <div class="kpi-label">Pendientes</div>
+        <div class="kpi-value">38</div>
+        <div class="kpi-sub">↑ 5 nuevos hoy</div>
+        <a class="kpi-link" href="#">Ver Detalles <i class="fas fa-angle-right"></i></a>
+      </div>
+      <div class="kpi kpi-green">
+        <i class="fas fa-users kpi-icon"></i>
+        <div class="kpi-label">Clientes activos</div>
+        <div class="kpi-value">1,847</div>
+        <div class="kpi-sub">↑ 8.1% este trimestre</div>
+        <a class="kpi-link" href="#">Ver Detalles <i class="fas fa-angle-right"></i></a>
+      </div>
+      <div class="kpi kpi-red">
+        <i class="fas fa-times-circle kpi-icon"></i>
+        <div class="kpi-label">Cancelaciones</div>
+        <div class="kpi-value">14</div>
+        <div class="kpi-sub">↓ 3.2% este mes</div>
+        <a class="kpi-link" href="#">Ver Detalles <i class="fas fa-angle-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="charts-row">
+      <!-- Área -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <i class="fas fa-chart-area"></i>
+            Ingresos mensuales
+          </div>
+          <span class="badge badge-green">↑ 12.4%</span>
         </div>
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-area me-1"></i>
-                        Ejemplo de Gráfico de Área
-                    </div>
-                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar me-1"></i>
-                        Ejemplo de Gráfico de Barras
-                    </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                </div>
-            </div>
+        <div class="card-body">
+          <div class="chart-meta">
+            <span class="chart-big">$84,200</span>
+            <span class="chart-delta">↑ $9,200 vs 2023</span>
+          </div>
+          <div class="legend">
+            <span class="leg-item"><span class="leg-dot" style="background:#2a78d6"></span>2024</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#c3c2b7"></span>2023</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="myAreaChart"></canvas>
+          </div>
         </div>
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                Base de datos Ejemplo
-            </div>
-            <div class="card-body">
-                <table id="datatablesSimple">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Cargo</th>
-                            <th>Oficina</th>
-                            <th>Edad</th>
-                            <th>Fecha de inicio</th>
-                            <th>Salario</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Cargo</th>
-                            <th>Oficina</th>
-                            <th>Edad</th>
-                            <th>Fecha de inicio</th>
-                            <th>Salario</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>Arquitecto de Sistemas</td>
-                            <td>Edimburgo</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Contador</td>
-                            <td>Tokio</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Autor Técnico Junior</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-                            <td>$86,000</td>
-                        </tr>
-                        <tr>
-                            <td>Cedric Kelly</td>
+      </div>
+
+      <!-- Barras -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <i class="fas fa-chart-bar"></i>
+            Ventas por categoría
+          </div>
+          <span class="badge badge-blue">T4 2024</span>
+        </div>
+        <div class="card-body">
+          <div class="chart-meta">
+            <span class="chart-big">1,847</span>
+            <span class="chart-delta">↑ 8.1% trimestre</span>
+          </div>
+          <div class="legend">
+            <span class="leg-item"><span class="leg-dot" style="background:#2a78d6"></span>Producto A</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#1baf7a"></span>Producto B</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#eda100"></span>Producto C</span>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="myBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="card table-card">
+      <div class="card-head">
+        <div class="card-head-left">
+          <i class="fas fa-table"></i>
+          Base de datos
+        </div>
+        <span class="badge badge-blue">12 registros</span>
+      </div>
+      <div class="card-body">
+        <table id="datatablesSimple">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cargo</th>
+              <th>Oficina</th>
+              <th>Edad</th>
+              <th>Fecha de inicio</th>
+              <th>Salario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tiger Nixon</td>
+              <td><span class="tag tag-blue">Arquitecto de Sistemas</span></td>
+              <td>Edimburgo</td><td>61</td><td>2011/04/25</td>
+              <td class="salary">$320,800</td>
+            </tr>
+            <tr>
+              <td>Garrett Winters</td>
+              <td><span class="tag tag-green">Contador</span></td>
+              <td>Tokio</td><td>63</td><td>2011/07/25</td>
+              <td class="salary">$170,750</td>
+            </tr>
+            <tr>
+              <td>Ashton Cox</td>
+              <td><span class="tag tag-amber">Autor Técnico Jr.</span></td>
+              <td>San Francisco</td><td>66</td><td>2009/01/12</td>
+              <td class="salary">$86,000</td>
+            </tr>
+            <tr>
+              <td>Cedric Kelly</td>
+              <td><span class="tag tag-blue">Dev Senior</span></td>
+              <td>Edimburgo</td><td>22</td><td>2012/03/29</td>
+              <td class="salary">$433,060</td>
+            </tr>
+            <tr>
+              <td>Airi Satou</td>
+              <td><span class="tag tag-teal">Contable</span></td>
+              <td>Tokio</td><td>33</td><td>2008/11/28</td>
+              <td class="salary">$162,700</td>
+            </tr>
+            <tr>
+              <td>Brielle Williamson</td>
+              <td><span class="tag tag-green">Integradora</span></td>
+              <td>Nueva York</td><td>61</td><td>2012/12/02</td>
+              <td class="salary">$372,000</td>
+            </tr>
+            <tr>
+              <td>Herrod Chandler</td>
+              <td><span class="tag tag-amber">Vendedor</span></td>
+              <td>San Francisco</td><td>59</td><td>2012/08/06</td>
+              <td class="salary">$137,500</td>
+            </tr>
+            <tr>
+              <td>Rhona Davidson</td>
+              <td><span class="tag tag-blue">Integradora</span></td>
+              <td>Tokio</td><td>55</td><td>2010/10/14</td>
+              <td class="salary">$327,900</td>
+            </tr>
+            <tr>
+              <td>Colleen Hurst</td>
+              <td><span class="tag tag-teal">Dev JavaScript</span></td>
+              <td>San Francisco</td><td>39</td><td>2009/09/15</td>
+              <td class="salary">$205,500</td>
+            </tr>
+            <tr>
+              <td>Sonya Frost</td>
+              <td><span class="tag tag-blue">Dev Software</span></td>
+              <td>Edimburgo</td><td>23</td><td>2008/12/13</td>
+              <td class="salary">$103,600</td>
+            </tr>
+            <tr>
+              <td>Jena Gaines</td>
+              <td><span class="tag tag-amber">Gerente de Oficina</span></td>
+              <td>Londres</td><td>30</td><td>2008/12/19</td>
+              <td class="salary">$90,560</td>
+            </tr>
+            <tr>
+              <td>Quinn Flynn</td>
+              <td><span class="tag tag-red">Soporte</span></td>
+              <td>Edimburgo</td><td>22</td><td>2013/03/03</td>
+              <td class="salary">$342,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- .page -->
+</main>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const grid = '#e1e0d9';
+  const tick  = '#898781';
+
+  const sharedOpts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#fff',
+        borderColor: grid,
+        borderWidth: 1,
+        titleColor: '#0b0b0b',
+        bodyColor: '#52514e',
+        padding: 10,
+        cornerRadius: 8
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        border: { color: '#c3c2b7' },
+        ticks: { color: tick, font: { size: 11 }, maxRotation: 0 }
+      },
+      y: {
+        grid: { color: grid, lineWidth: 1 },
+        border: { display: false },
+        ticks: { color: tick, font: { size: 11 } }
+      }
+    }
+  };
+
+  // --- Gráfico de Área ---
+  new Chart(document.getElementById('myAreaChart'), {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: '2024',
+          data: [52000, 58000, 61000, 67000, 63000, 72000, 75000, 71000, 80000, 77000, 84000, 84200],
+          borderColor: '#2a78d6',
+          backgroundColor: 'rgba(42,120,214,0.08)',
+          borderWidth: 2,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          pointBackgroundColor: '#2a78d6',
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: '2023',
+          data: [40000, 44000, 48000, 51000, 53000, 58000, 60000, 62000, 65000, 63000, 68000, 71000],
+          borderColor: '#c3c2b7',
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          borderDash: [4, 3],
+          pointRadius: 0,
+          fill: false,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      ...sharedOpts,
+      scales: {
+        ...sharedOpts.scales,
+        y: {
+          ...sharedOpts.scales.y,
+          ticks: {
+            color: tick,
+            font: { size: 11 },
+            callback: v => '$' + (v / 1000).toFixed(0) + 'k'
+          }
+        }
+      }
+    }
+  });
+
+  // --- Gráfico de Barras ---
+  new Chart(document.getElementById('myBarChart'), {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: 'Producto A',
+          data: [120, 145, 132, 160, 148, 175, 168, 155, 182, 170, 190, 195],
+          backgroundColor: '#2a78d6',
+          borderRadius: 4,
+          borderSkipped: false,
+          barPercentage: 0.7,
+          categoryPercentage: 0.85
+        },
+        {
+          label: 'Producto B',
+          data: [95, 108, 115, 128, 118, 140, 132, 125, 148, 138, 155, 160],
+          backgroundColor: '#1baf7a',
+          borderRadius: 4,
+          borderSkipped: false,
+          barPercentage: 0.7,
+          categoryPercentage: 0.85
+        },
+        {
+          label: 'Producto C',
+          data: [70, 82, 88, 95, 90, 108, 102, 96, 115, 108, 122, 128],
+          backgroundColor: '#eda100',
+          borderRadius: 4,
+          borderSkipped: false,
+          barPercentage: 0.7,
+          categoryPercentage: 0.85
+        }
+      ]
+    },
+    options: sharedOpts
+  });
+</script>
