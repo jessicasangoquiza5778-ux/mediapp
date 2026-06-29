@@ -3,84 +3,108 @@
 
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="container mt-4">
-            <h1 class="mb-4">Editar Cliente</h1>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
 
-            
-            <form action="" method="post">
-                {% csrf_token %}
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-warning text-dark py-3">
+                            <h2 class="mb-0">
+                                <i class="bi bi-pencil-square me-2"></i>
+                                Editar Cliente
+                            </h2>
+                        </div>
 
-                <div class="form-group mb-3">
-                    <label>Nombre</label>
-                    <input type="text"
-                           name="nombreClienteEdit"
-                           class="form-control"
-                           value="{{ cliente.nombre_cliente }}"
-                           required>
+                        <div class="card-body p-4">
+                            <form action="" method="post">
+                                {% csrf_token %}
+
+                                <div class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Nombre</label>
+                                        <input type="text"
+                                               name="nombreClienteEdit"
+                                               class="form-control"
+                                               value="{{ cliente.nombre_cliente }}"
+                                               required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Apellido</label>
+                                        <input type="text"
+                                               name="apellidoClienteEdit"
+                                               class="form-control"
+                                               value="{{ cliente.apellido_cliente }}"
+                                               required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Cédula</label>
+                                        <input type="text"
+                                               name="cedulaClienteEdit"
+                                               class="form-control"
+                                               value="{{ cliente.cedula_cliente }}"
+                                               maxlength="10"
+                                               required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Teléfono</label>
+                                        <input type="text"
+                                               name="telefonoClienteEdit"
+                                               class="form-control"
+                                               value="{{ cliente.telefono_cliente }}"
+                                               maxlength="10"
+                                               required>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label class="form-label fw-semibold">Dirección</label>
+                                        <input type="text"
+                                               name="direccionClienteEdit"
+                                               class="form-control"
+                                               value="{{ cliente.direccion_cliente }}"
+                                               required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Estado</label>
+                                        <select name="estadoClienteEdit" class="form-select" required>
+                                            <option value="activo"
+                                                {% if cliente.estado_cliente == 'activo' %}selected{% endif %}>
+                                                Activo
+                                            </option>
+
+                                            <option value="inactivo"
+                                                {% if cliente.estado_cliente == 'inactivo' %}selected{% endif %}>
+                                                Inactivo
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a href="{% url 'listar_clientes' %}"
+                                       class="btn btn-outline-danger rounded-pill px-4">
+                                        <i class="bi bi-x-circle me-1"></i>
+                                        CANCELAR
+                                    </a>
+                                    <button class="btn btn-warning rounded-pill px-4">
+                                        <i class="bi bi-check-circle me-1"></i>
+                                        GUARDAR
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="form-group mb-3">
-                    <label>Apellido</label>
-                    <input type="text"
-                           name="apellidoClienteEdit"
-                           class="form-control"
-                           value="{{ cliente.apellido_cliente }}"
-                           required>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label>Cédula</label>
-                    <input type="text"
-                           name="cedulaClienteEdit"
-                           class="form-control"
-                           value="{{ cliente.cedula_cliente }}"
-                           maxlength="10"
-                           required>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label>Teléfono</label>
-                    <input type="text"
-                           name="telefonoClienteEdit"
-                           class="form-control"
-                           value="{{ cliente.telefono_cliente }}"
-                           maxlength="10"
-                           required>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label>Dirección</label>
-                    <input type="text"
-                           name="direccionClienteEdit"
-                           class="form-control"
-                           value="{{ cliente.direccion_cliente }}"
-                           required>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label>Estado</label>
-                    <select name="estadoClienteEdit" class="form-control" required>
-                        <option value="activo"
-                            {% if cliente.estado_cliente == 'activo' %}selected{% endif %}>
-                            Activo
-                        </option>
-
-                        <option value="inactivo"
-                            {% if cliente.estado_cliente == 'inactivo' %}selected{% endif %}>
-                            Inactivo
-                        </option>
-                    </select>
-                </div>
-
-                <button class="btn btn-warning rounded-pill">
-                    GUARDAR
-                </button>
-
-                <a href="{% url 'listar_clientes' %}"
-                   class="btn btn-danger rounded-pill">
-                    CANCELAR
-                </a>
-            </form>
+            </div>
         </div>
     </div>
 </div>

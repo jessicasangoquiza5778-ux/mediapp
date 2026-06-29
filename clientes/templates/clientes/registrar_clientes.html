@@ -1,62 +1,101 @@
 {% load static %}
 {% include 'private/header.html' %}
 
-<div class="container mt-4">
-    <h2>Inserta tus Clientes</h2>
-    <br>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
 
-    <form action="" method="post">
-        {% csrf_token %}
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h2 class="mb-0">
+                        <i class="bi bi-person-plus-fill me-2"></i>
+                        Inserta tus Clientes
+                    </h2>
+                </div>
 
-        <div class="mb-3">
-            <label>Nombre</label>
-            <input type="text"
-                   name="nombreCliente"
-                   class="form-control"
-                   required>
+                <div class="card-body p-4">
+                    <form action="" method="post">
+                        {% csrf_token %}
 
-            <label>Apellido</label>
-            <input type="text"
-                   name="apellidoCliente"
-                   class="form-control"
-                   required>
+                        <div class="row g-3">
 
-            <label>Cédula</label>
-            <input type="text"
-                   name="cedulaCliente"
-                   class="form-control"
-                   maxlength="10"
-                   required>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Nombre</label>
+                                <input type="text"
+                                       name="nombreCliente"
+                                       class="form-control"
+                                       placeholder="Ej: Juan"
+                                       required>
+                            </div>
 
-            <label>Teléfono</label>
-            <input type="text"
-                   name="telefonoCliente"
-                   class="form-control"
-                   maxlength="10"
-                   required>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Apellido</label>
+                                <input type="text"
+                                       name="apellidoCliente"
+                                       class="form-control"
+                                       placeholder="Ej: Pérez"
+                                       required>
+                            </div>
 
-            <label>Dirección</label>
-            <input type="text"
-                   name="direccionCliente"
-                   class="form-control"
-                   required>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Cédula</label>
+                                <input type="text"
+                                       name="cedulaCliente"
+                                       class="form-control"
+                                       maxlength="10"
+                                       placeholder="10 dígitos"
+                                       required>
+                            </div>
 
-            <label>Estado</label>
-            <select name="estadoCliente" class="form-control">
-                <option value="">Seleccione</option>
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
-            </select>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Teléfono</label>
+                                <input type="text"
+                                       name="telefonoCliente"
+                                       class="form-control"
+                                       maxlength="10"
+                                       placeholder="Ej: 0991234567"
+                                       required>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Dirección</label>
+                                <input type="text"
+                                       name="direccionCliente"
+                                       class="form-control"
+                                       placeholder="Calle, número, sector"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Estado</label>
+                                <select name="estadoCliente" class="form-select">
+                                    <option value="">Seleccione</option>
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="{% url 'listar_clientes' %}" class="btn btn-outline-danger px-4">
+                                <i class="bi bi-x-circle me-1"></i>
+                                CANCELAR
+                            </a>
+                            <button type="submit" class="btn btn-success px-4">
+                                <i class="bi bi-check-circle me-1"></i>
+                                GUARDAR
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
         </div>
-
-        <button type="submit" class="btn btn-success">
-            GUARDAR
-        </button>
-
-        <a href="{% url 'listar_clientes' %}" class="btn btn-danger">
-            CANCELAR
-        </a>
-    </form>
+    </div>
 </div>
 
 {% include 'private/footer.html' %}
