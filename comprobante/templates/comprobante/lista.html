@@ -1,42 +1,159 @@
 {% load static %}
 {% include 'private/header.html' %}
 
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Comprobantes de Servicio</h1>
-    <div class="card mb-4">
-        <div class="card-header">
-            <a href="{% url 'crear_comprobante' %}" class="btn btn-primary">Nuevo Comprobante</a>
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Número</th>
-                        <th>Fecha</th>
-                        <th>Cliente</th>
-                        <th>Descripción</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for comprobante in comprobantes %}
-                    <tr>
-                        <td>{{ comprobante.numero_comprobante }}</td>
-                        <td>{{ comprobante.fecha }}</td>
-                        <td>{{ comprobante.cliente }}</td>
-                        <td>{{ comprobante.descripcion }}</td>
-                        <td>{{ comprobante.total }}</td>
-                        <td>
-                            <a href="{% url 'editar_comprobante' comprobante.pk %}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="{% url 'eliminar_comprobante' comprobante.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<div class="container-fluid px-4 py-4">
+
+  <!-- Encabezado -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-0">🧾 Comprobantes de Servicio</h2>
+      <small class="text-muted">Gestión de comprobantes registrados</small>
     </div>
+    <a href="{% url 'crear_comprobante' %}" class="btn btn-primary">
+      <i class="bi bi-plus-circle me-1"></i> Nuevo Comprobante
+    </a>
+  </div>
+
+  <!-- Tarjetas de resumen -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm bg-primary text-white">
+        <div class="card-body">
+          <h6 class="card-title">Total Comprobantes</h6>
+          <h3 class="fw-bold">{{ comprobantes|length }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm bg-success text-white">
+        <div class="card-body">
+          <h6 class="card-title">Total Facturado</h6>
+          <h3 class="fw-bold">
+              ${{ total_facturado|floatformat:2 }}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm bg-warning text-dark">
+        <div class="card-body">
+          <h6 class="card-title">Último Número</h6>
+          <h3 class="fw-bold">
+            {% if comprobantes %}#{{ comprobantes.last.numero_comprobante }}{% else %}—{% endif %}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0" id="tablaComprobantes">
+          <thead class="table-dark">
+            <tr>
+              <th class="ps-4">#</th>
+              <th>Número</th>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Descripción</th>
+              <th class="text-end">Total</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for comprobante in comprobantes %}
+            <tr>
+              <td class="ps-4 text-muted">{{ forloop.counter }}</td>
+              <td><span class="badge bg-secondary">#{{ comprobante.numero_comprobante }}</span></td>
+              <td><i class="bi bi-calendar3 text-muted me-1"></i>{{ comprobante.fecha }}</td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="avatar-circle">{{ comprobante.cliente|first|upper }}</div>
+                  <strong>{{ comprobante.cliente }}</strong>
+                </div>
+              </td>
+              <td>{{ comprobante.descripcion }}</td>
+              <td class="text-end fw-bold text-success">${{ comprobante.total }}</td>
+              <td class="text-center">
+                <div class="d-flex justify-content-center gap-2">
+                  <a href="{% url 'editar_comprobante' comprobante.pk %}"
+                     class="btn btn-sm btn-outline-warning" title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="{% url 'eliminar_comprobante' comprobante.pk %}"
+                        class="btn btn-sm btn-outline-danger" title="Eliminar">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="7" class="text-center py-5 text-muted">
+                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                No hay comprobantes registrados.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
-{% include 'private/footer.html' %}
+<!-- Modal Confirmar Eliminación -->
+<div class="modal fade" id="modalEliminar" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <p class="fs-5">¿Eliminar el comprobante <strong id="modalNumero"></strong>?</p>
+        <p class="text-muted">Cliente: <strong id="modalCliente"></strong></p>
+        <p class="text-danger small">Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form id="formEliminar" method="post" action="">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">
+            <i class="fas fa-trash me-1"></i> Sí, eliminar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .avatar-circle {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .table-hover tbody tr:hover { background-color: #f0f4ff; }
+</style>
+
+<script>
+  var modalEliminar = document.getElementById('modalEliminar');
+  modalEliminar.addEventListener('show.bs.modal', function(event) {
+    var button = event.relatedTarget;
+    var url = button.getAttribute('data-url');
+    var numero = button.getAttribute('data-numero');
+    var cliente = button.getAttribute('data-cliente');
+    
+    document.getElementById('modalNumero').textContent = '#' + numero;
+    document.getElementById('modalCliente').textContent = cliente;
+    document.getElementById('formEliminar').setAttribute('action', url);
+  });
+</script>

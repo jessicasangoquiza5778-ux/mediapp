@@ -3,7 +3,11 @@ from .models import ComprobanteServicio
 
 def lista_comprobantes(request):
     comprobantes = ComprobanteServicio.objects.all()
-    return render(request, 'comprobante/lista.html', {'comprobantes': comprobantes})
+    total_facturado = round(sum(float(c.total) for c in comprobantes), 2)
+    return render(request, 'comprobante/lista.html', {
+        'comprobantes': comprobantes,
+        'total_facturado': total_facturado
+    })
 
 def crear_comprobante(request):
     if request.method == 'POST':
