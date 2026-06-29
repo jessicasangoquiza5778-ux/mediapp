@@ -9,15 +9,21 @@ def listar_vehiculos(request):
 
 def crear_vehiculos(request):
     if request.method == "POST":
-        nombre_vehiculo = request.POST.get("nombreVehiculo")
-        precio_vehiculo = request.POST.get("precioVehiculo")
-        stock_vehiculo = request.POST.get("stockVehiculo")
+        placa_vehiculo = request.POST.get("placaVehiculo")
+        marca_vehiculo = request.POST.get("marcaVehiculo")
+        modelo_vehiculo = request.POST.get("modeloVehiculo")
+        anio_vehiculo = request.POST.get("anioVehiculo")
+        color_vehiculo = request.POST.get("colorVehiculo")
+        tipo_vehiculo = request.POST.get("tipoVehiculo")
         estado_vehiculo = request.POST.get("estadoVehiculo")
 
         Vehiculo.objects.create(
-            nombre_vehiculo = nombre_vehiculo,
-            precio_vehiculo = precio_vehiculo,
-            stock_vehiculo = stock_vehiculo,
+            placa_vehiculo = placa_vehiculo,
+            marca_vehiculo = marca_vehiculo,
+            modelo_vehiculo = modelo_vehiculo,
+            anio_vehiculo = anio_vehiculo,
+            color_vehiculo = color_vehiculo,
+            tipo_vehiculo = tipo_vehiculo,
             estado_vehiculo = estado_vehiculo
         )
         messages.success(request, "Vehículo agregado con éxito")
@@ -34,9 +40,12 @@ def editar_vehiculos(request, id):
     vehiculo = Vehiculo.objects.get(id=id)
 
     if request.method == "POST":
-        vehiculo.nombre_vehiculo = request.POST.get("nombreVehiculoEdit")
-        vehiculo.precio_vehiculo = request.POST.get("precioVehiculoEdit")
-        vehiculo.stock_vehiculo = request.POST.get("stockVehiculoEdit")
+        vehiculo.placa_vehiculo = request.POST.get("placaVehiculoEdit")
+        vehiculo.marca_vehiculo = request.POST.get("marcaVehiculoEdit")
+        vehiculo.modelo_vehiculo = request.POST.get("modeloVehiculoEdit")
+        vehiculo.anio_vehiculo = request.POST.get("anioVehiculoEdit")
+        vehiculo.color_vehiculo = request.POST.get("colorVehiculoEdit")
+        vehiculo.tipo_vehiculo = request.POST.get("tipoVehiculoEdit")
         vehiculo.estado_vehiculo = request.POST.get("estadoVehiculoEdit")
 
         vehiculo.save()
