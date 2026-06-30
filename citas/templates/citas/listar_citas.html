@@ -1,43 +1,100 @@
 {% load static %}
 {% include 'private/header.html' %}
-<div class="container mt-4">
-    <h2>Listado de Citas</h2>
-    <a href="{% url 'registrar_cita' %}" class="btn btn-success mb-3">+ Nueva Cita</a>
 
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>CLIENTE</th>
-                <th>SERVICIO</th>
-                <th>FECHA</th>
-                <th>HORA</th>
-                <th>ESTADO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cita in citas %}
-            <tr>
-                <td>{{ cita.id }}</td>
-                <td>{{ cita.cliente }}</td>
-                <td>{{ cita.servicio }}</td>
-                <td>{{ cita.fecha }}</td>
-                <td>{{ cita.hora }}</td>
-                <td>{{ cita.estado }}</td>
-                <td>
-                    <a href="{% url 'editar_cita' cita.id %}" class="btn btn-sm btn-warning rounded-pill">
-                        Editar
-                    </a>
-                    <a href="{% url 'eliminar_cita' cita.id %}"
-                       class="btn btn-sm btn-danger rounded-pill"
-                       onclick="return confirm('¿Estás seguro de eliminar esta cita?');">
-                        Eliminar
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">📅 Listado de Citas</h2>
+        <a href="{% url 'registrar_cita' %}" class="btn btn-success rounded-pill px-4 shadow-sm">
+            + Nueva Cita
+        </a>
+    </div>
+
+    <!-- Tarjetas de estadísticas -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3 col-6">
+            <div class="card text-white bg-primary shadow-sm border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h6 class="text-uppercase opacity-75 mb-1">Total Citas</h6>
+                    <h2 class="fw-bold mb-0">{{ citas|length }}</h2>
+                </div>
+            </div>
+        </div>
+
+        {% regroup citas|dictsort:"estado" by estado as estados_agrupados %}
+        {% for grupo in estados_agrupados %}
+        <div class="col-md-3 col-6">
+            <div class="card shadow-sm border-0 rounded-4
+                {% if grupo.grouper|lower == 'pendiente' %} bg-warning text-dark
+                {% elif grupo.grouper|lower == 'confirmada' %} bg-info text-white
+                {% elif grupo.grouper|lower == 'completada' %} bg-success text-white
+                {% elif grupo.grouper|lower == 'cancelada' %} bg-danger text-white
+                {% else %} bg-secondary text-white
+                {% endif %}">
+                <div class="card-body text-center">
+                    <h6 class="text-uppercase opacity-75 mb-1">{{ grupo.grouper }}</h6>
+                    <h2 class="fw-bold mb-0">{{ grupo.list|length }}</h2>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Tabla de citas -->
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>CLIENTE</th>
+                        <th>SERVICIO</th>
+                        <th>FECHA</th>
+                        <th>HORA</th>
+                        <th>ESTADO</th>
+                        <th class="text-center">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cita in citas %}
+                    <tr>
+                        <td>#{{ cita.id }}</td>
+                        <td>{{ cita.cliente }}</td>
+                        <td>{{ cita.servicio }}</td>
+                        <td>{{ cita.fecha }}</td>
+                        <td>{{ cita.hora }}</td>
+                        <td>
+                            <span class="badge rounded-pill px-3 py-2
+                                {% if cita.estado|lower == 'pendiente' %} bg-warning text-dark
+                                {% elif cita.estado|lower == 'confirmada' %} bg-info text-white
+                                {% elif cita.estado|lower == 'completada' %} bg-success
+                                {% elif cita.estado|lower == 'cancelada' %} bg-danger
+                                {% else %} bg-secondary
+                                {% endif %}">
+                                {{ cita.estado }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <a href="{% url 'editar_cita' cita.id %}" class="btn btn-sm btn-warning rounded-pill">
+                                ✏️ Editar
+                            </a>
+                            <a href="{% url 'eliminar_cita' cita.id %}"
+                               class="btn btn-sm btn-danger rounded-pill"
+                               onclick="return confirm('¿Estás seguro de eliminar esta cita?');">
+                                🗑️ Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">No hay citas registradas.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
+
 {% include 'private/footer.html' %}
