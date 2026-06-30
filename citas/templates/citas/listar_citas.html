@@ -11,11 +11,12 @@
     </div>
 
     <!-- Tarjetas de estadísticas -->
-    <div class="row g-3 mb-4">
-        <div class="col-md-3 col-6">
-            <div class="card text-white bg-primary shadow-sm border-0 rounded-4">
-                <div class="card-body text-center">
-                    <h6 class="text-uppercase opacity-75 mb-1">Total Citas</h6>
+    <div class="row g-3 mb-4 justify-content-center">
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-white bg-primary shadow-sm border-0 rounded-4 stat-card">
+                <div class="card-body text-center py-4">
+                    <div class="fs-2 mb-1">📋</div>
+                    <h6 class="text-uppercase opacity-75 mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Total Citas</h6>
                     <h2 class="fw-bold mb-0">{{ citas|length }}</h2>
                 </div>
             </div>
@@ -23,16 +24,24 @@
 
         {% regroup citas|dictsort:"estado" by estado as estados_agrupados %}
         {% for grupo in estados_agrupados %}
-        <div class="col-md-3 col-6">
-            <div class="card shadow-sm border-0 rounded-4
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 rounded-4 stat-card
                 {% if grupo.grouper|lower == 'pendiente' %} bg-warning text-dark
                 {% elif grupo.grouper|lower == 'confirmada' %} bg-info text-white
-                {% elif grupo.grouper|lower == 'completada' %} bg-success text-white
+                {% elif grupo.grouper|lower == 'atendida' %} bg-success text-white
                 {% elif grupo.grouper|lower == 'cancelada' %} bg-danger text-white
                 {% else %} bg-secondary text-white
                 {% endif %}">
-                <div class="card-body text-center">
-                    <h6 class="text-uppercase opacity-75 mb-1">{{ grupo.grouper }}</h6>
+                <div class="card-body text-center py-4">
+                    <div class="fs-2 mb-1">
+                        {% if grupo.grouper|lower == 'pendiente' %} ⏳
+                        {% elif grupo.grouper|lower == 'confirmada' %} ✅
+                        {% elif grupo.grouper|lower == 'atendida' %} 🏁
+                        {% elif grupo.grouper|lower == 'cancelada' %} ❌
+                        {% else %} 📌
+                        {% endif %}
+                    </div>
+                    <h6 class="text-uppercase opacity-75 mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">{{ grupo.grouper }}</h6>
                     <h2 class="fw-bold mb-0">{{ grupo.list|length }}</h2>
                 </div>
             </div>
@@ -67,7 +76,7 @@
                             <span class="badge rounded-pill px-3 py-2
                                 {% if cita.estado|lower == 'pendiente' %} bg-warning text-dark
                                 {% elif cita.estado|lower == 'confirmada' %} bg-info text-white
-                                {% elif cita.estado|lower == 'completada' %} bg-success
+                                {% elif cita.estado|lower == 'atendida' %} bg-success
                                 {% elif cita.estado|lower == 'cancelada' %} bg-danger
                                 {% else %} bg-secondary
                                 {% endif %}">
@@ -96,5 +105,15 @@
     </div>
 
 </div>
+
+<style>
+.stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12) !important;
+}
+</style>
 
 {% include 'private/footer.html' %}
