@@ -13,9 +13,9 @@
     <!-- Tarjetas de estadísticas -->
     <div class="row g-3 mb-4 justify-content-center">
         <div class="col-md-3 col-sm-6">
-            <div class="card text-white bg-primary shadow-sm border-0 rounded-4 stat-card">
+            <div class="card text-white border-0 rounded-4 stat-card stat-total">
                 <div class="card-body text-center py-4">
-                    <div class="fs-2 mb-1">📋</div>
+                    <div class="stat-icon fs-2 mb-1">📋</div>
                     <h6 class="text-uppercase opacity-75 mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Total Citas</h6>
                     <h2 class="fw-bold mb-0">{{ citas|length }}</h2>
                 </div>
@@ -25,15 +25,15 @@
         {% regroup citas|dictsort:"estado" by estado as estados_agrupados %}
         {% for grupo in estados_agrupados %}
         <div class="col-md-3 col-sm-6">
-            <div class="card shadow-sm border-0 rounded-4 stat-card
-                {% if grupo.grouper|lower == 'pendiente' %} bg-warning text-dark
-                {% elif grupo.grouper|lower == 'confirmada' %} bg-info text-white
-                {% elif grupo.grouper|lower == 'atendida' %} bg-success text-white
-                {% elif grupo.grouper|lower == 'cancelada' %} bg-danger text-white
-                {% else %} bg-secondary text-white
+            <div class="card text-white border-0 rounded-4 stat-card
+                {% if grupo.grouper|lower == 'pendiente' %} stat-pendiente
+                {% elif grupo.grouper|lower == 'confirmada' %} stat-confirmada
+                {% elif grupo.grouper|lower == 'atendida' %} stat-atendida
+                {% elif grupo.grouper|lower == 'cancelada' %} stat-cancelada
+                {% else %} stat-otro
                 {% endif %}">
                 <div class="card-body text-center py-4">
-                    <div class="fs-2 mb-1">
+                    <div class="stat-icon fs-2 mb-1">
                         {% if grupo.grouper|lower == 'pendiente' %} ⏳
                         {% elif grupo.grouper|lower == 'confirmada' %} ✅
                         {% elif grupo.grouper|lower == 'atendida' %} 🏁
@@ -108,11 +108,62 @@
 
 <style>
 .stat-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.stat-card:hover::before {
+    left: 125%;
+}
+
 .stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card:hover .stat-icon {
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%   { transform: translateY(0); }
+    30%  { transform: translateY(-8px) rotate(-8deg); }
+    60%  { transform: translateY(0) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.stat-total {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+.stat-pendiente {
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+.stat-confirmada {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+}
+.stat-atendida {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+.stat-cancelada {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+.stat-otro {
+    background: linear-gradient(135deg, #64748b, #475569);
 }
 </style>
 
