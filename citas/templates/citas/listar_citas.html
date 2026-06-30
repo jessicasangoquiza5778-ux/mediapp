@@ -14,10 +14,10 @@
     <div class="row g-3 mb-4 justify-content-center">
         <div class="col-md-3 col-sm-6">
             <div class="card text-white border-0 rounded-4 stat-card stat-total">
-                <div class="card-body text-center py-4">
-                    <div class="stat-icon fs-2 mb-1">📋</div>
-                    <h6 class="text-uppercase opacity-75 mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Total Citas</h6>
-                    <h2 class="fw-bold mb-0">{{ citas|length }}</h2>
+                <div class="card-body text-center py-2">
+                    <div class="stat-icon mb-1">📋</div>
+                    <h6 class="text-uppercase opacity-75 mb-0" style="font-size: 0.7rem; letter-spacing: 0.5px;">Total Citas</h6>
+                    <h3 class="fw-bold mb-0">{{ citas|length }}</h3>
                 </div>
             </div>
         </div>
@@ -32,8 +32,8 @@
                 {% elif grupo.grouper|lower == 'cancelada' %} stat-cancelada
                 {% else %} stat-otro
                 {% endif %}">
-                <div class="card-body text-center py-4">
-                    <div class="stat-icon fs-2 mb-1">
+                <div class="card-body text-center py-2">
+                    <div class="stat-icon mb-1">
                         {% if grupo.grouper|lower == 'pendiente' %} ⏳
                         {% elif grupo.grouper|lower == 'confirmada' %} ✅
                         {% elif grupo.grouper|lower == 'atendida' %} 🏁
@@ -41,8 +41,8 @@
                         {% else %} 📌
                         {% endif %}
                     </div>
-                    <h6 class="text-uppercase opacity-75 mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">{{ grupo.grouper }}</h6>
-                    <h2 class="fw-bold mb-0">{{ grupo.list|length }}</h2>
+                    <h6 class="text-uppercase opacity-75 mb-0" style="font-size: 0.7rem; letter-spacing: 0.5px;">{{ grupo.grouper }}</h6>
+                    <h3 class="fw-bold mb-0">{{ grupo.list|length }}</h3>
                 </div>
             </div>
         </div>
@@ -112,7 +112,12 @@
     overflow: hidden;
     cursor: default;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+    font-size: 1.4rem;
+    line-height: 1;
 }
 
 .stat-card::before {
@@ -132,8 +137,8 @@
 }
 
 .stat-card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
 }
 
 .stat-card:hover .stat-icon {
@@ -142,28 +147,30 @@
 
 @keyframes bounce {
     0%   { transform: translateY(0); }
-    30%  { transform: translateY(-8px) rotate(-8deg); }
+    30%  { transform: translateY(-6px) rotate(-8deg); }
     60%  { transform: translateY(0) rotate(5deg); }
     100% { transform: translateY(0) rotate(0deg); }
 }
 
+/* Mismos colores que los badges de la tabla */
 .stat-total {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, #6c757d, #495057);
 }
 .stat-pendiente {
-    background: linear-gradient(135deg, #f59e0b, #f97316);
+    background: linear-gradient(135deg, #ffc107, #ffca2c);
+    color: #212529 !important;
 }
 .stat-confirmada {
-    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    background: linear-gradient(135deg, #0dcaf0, #31d2f2);
 }
 .stat-atendida {
-    background: linear-gradient(135deg, #22c55e, #16a34a);
+    background: linear-gradient(135deg, #198754, #20c997);
 }
 .stat-cancelada {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
+    background: linear-gradient(135deg, #dc3545, #e35d6a);
 }
 .stat-otro {
-    background: linear-gradient(135deg, #64748b, #475569);
+    background: linear-gradient(135deg, #6c757d, #495057);
 }
 </style>
 
