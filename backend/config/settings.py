@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',  # <--- ESTA ES LA LÍNEA QUE FALTABA
 ]
 
 MIDDLEWARE = [
