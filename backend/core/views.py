@@ -42,3 +42,25 @@ def doctor_delete(request, pk):
         doctor.delete()
         return redirect('doctor_list')
     return render(request, 'doctors/doctor_confirm_delete.html', {'doctor': doctor})
+
+# ---------------------------------------------------------
+# PÁGINAS DE LA PLANTILLA CLINIC (About, Services, Contact...)
+# ---------------------------------------------------------
+
+def about(request):
+    return render(request, 'about.html')
+
+def departments(request):
+    return render(request, 'departments.html')
+
+def services(request):
+    return render(request, 'services.html')
+
+def doctors_page(request):
+    return render(request, 'doctors.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def appointment(request):
+    return render(request, 'appointment.html')
