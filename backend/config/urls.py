@@ -9,6 +9,14 @@ urlpatterns = [
     path('doctores/editar/<int:pk>/', views.doctor_update, name='doctor_update'),
     path('doctores/borrar/<int:pk>/', views.doctor_delete, name='doctor_delete'),
     
-    # ESTA ES LA LÍNEA QUE VA A CARGAR TU PÁGINA DE INICIO (EL INDEX.HTML DE CLINIC)
+    # PÁGINA DE INICIO
     path('', views.clinic_home, name='clinic_home'),
+
+    # NUEVAS PÁGINAS DE LA PLANTILLA (Agregadas para quitar el error 404)
+    path('about/', views.about, name='about'),
+    path('departments/', views.departments, name='departments'),
+    path('services/', views.services, name='services'),
+    path('doctors/', views.doctors_page, name='doctors_page'),
+    path('contact/', views.contact, name='contact'),
+    path('appointment/', views.appointment, name='appointment'),
 ]
