@@ -12,7 +12,7 @@ urlpatterns = [
     # PÁGINA DE INICIO
     path('', views.clinic_home, name='clinic_home'),
 
-    # NUEVAS PÁGINAS DE LA PLANTILLA (Agregadas para quitar el error 404)
+    # NUEVAS PÁGINAS DE LA PLANTILLA
     path('about/', views.about, name='about'),
     path('departments/', views.departments, name='departments'),
     path('services/', views.services, name='services'),
