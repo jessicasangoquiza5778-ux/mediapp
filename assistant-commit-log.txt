@@ -12,3 +12,4 @@ Update README note
 Update config note
 Improve log entry
 Add mobile note
+Add frontend note
