@@ -44,11 +44,7 @@ INSTALLED_APPS = [
     'clientes',
     'citas',
     'comprobante',
-<<<<<<< HEAD
     'doctores',
-=======
-    'vehiculos',
->>>>>>> 1202f29e15e6b23c36731802827219846ffe1323
 ]
 
 MIDDLEWARE = [

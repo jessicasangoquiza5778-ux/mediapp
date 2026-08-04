@@ -1,43 +1,6 @@
 {% load static %}
 {% include 'private/header.html' %}
 
-<<<<<<< HEAD
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Pacientes</th>
-                <th>SERVICIO</th>
-                <th>FECHA</th>
-                <th>HORA</th>
-                <th>ESTADO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cita in citas %}
-            <tr>
-                <td>{{ cita.id }}</td>
-                <td>{{ cita.Pacientes }}</td>
-                <td>{{ cita.servicio }}</td>
-                <td>{{ cita.fecha }}</td>
-                <td>{{ cita.hora }}</td>
-                <td>{{ cita.estado }}</td>
-                <td>
-                    <a href="{% url 'editar_cita' cita.id %}" class="btn btn-sm btn-warning rounded-pill">
-                        Editar
-                    </a>
-                    <a href="{% url 'eliminar_cita' cita.id %}"
-                       class="btn btn-sm btn-danger rounded-pill"
-                       onclick="return confirm('¿Estás seguro de eliminar esta cita?');">
-                        Eliminar
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-=======
 <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -73,7 +36,7 @@
                     <div class="stat-icon mb-1">
                         {% if grupo.grouper|lower == 'pendiente' %} ⏳
                         {% elif grupo.grouper|lower == 'confirmada' %} ✅
-                        {% elif grupo.grouper|lower == 'atendida' %} 🏁
+                        {% elif grupo.grouper|lower == 'atendida' %} 🩺
                         {% elif grupo.grouper|lower == 'cancelada' %} ❌
                         {% else %} 📌
                         {% endif %}
@@ -86,62 +49,47 @@
         {% endfor %}
     </div>
 
-    <!-- Tabla de citas -->
-    <div class="card shadow-sm border-0 rounded-4">
-        <div class="card-body p-0">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>CLIENTE</th>
-                        <th>SERVICIO</th>
-                        <th>FECHA</th>
-                        <th>HORA</th>
-                        <th>ESTADO</th>
-                        <th class="text-center">ACCIONES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for cita in citas %}
-                    <tr>
-                        <td>#{{ cita.id }}</td>
-                        <td>{{ cita.cliente }}</td>
-                        <td>{{ cita.servicio }}</td>
-                        <td>{{ cita.fecha }}</td>
-                        <td>{{ cita.hora }}</td>
-                        <td>
-                            <span class="badge rounded-pill px-3 py-2
-                                {% if cita.estado|lower == 'pendiente' %} bg-warning text-dark
-                                {% elif cita.estado|lower == 'confirmada' %} bg-info text-white
-                                {% elif cita.estado|lower == 'atendida' %} bg-success
-                                {% elif cita.estado|lower == 'cancelada' %} bg-danger
-                                {% else %} bg-secondary
-                                {% endif %}">
-                                {{ cita.estado }}
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <a href="{% url 'editar_cita' cita.id %}" class="btn btn-sm btn-warning rounded-pill">
-                                ✏️ Editar
-                            </a>
-                            <a href="{% url 'eliminar_cita' cita.id %}"
-                               class="btn btn-sm btn-danger rounded-pill"
-                               onclick="return confirm('¿Estás seguro de eliminar esta cita?');">
-                                🗑️ Eliminar
-                            </a>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="7" class="text-center text-muted py-4">No hay citas registradas.</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Pacientes</th>
+                    <th>SERVICIO</th>
+                    <th>FECHA</th>
+                    <th>HORA</th>
+                    <th>ESTADO</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in citas %}
+                <tr>
+                    <td>{{ cita.id }}</td>
+                    <td>{{ cita.Pacientes }}</td>
+                    <td>{{ cita.servicio }}</td>
+                    <td>{{ cita.fecha }}</td>
+                    <td>{{ cita.hora }}</td>
+                    <td>{{ cita.estado }}</td>
+                    <td>
+                        <a href="{% url 'editar_cita' cita.id %}" class="btn btn-sm btn-warning rounded-pill">
+                            ✏️ Editar
+                        </a>
+                        <a href="{% url 'eliminar_cita' cita.id %}"
+                           class="btn btn-sm btn-danger rounded-pill"
+                           onclick="return confirm('¿Estás seguro de eliminar esta cita?');">
+                            🗑️ Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">No hay citas registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
->>>>>>> 1202f29e15e6b23c36731802827219846ffe1323
 </div>
 
 <style>
