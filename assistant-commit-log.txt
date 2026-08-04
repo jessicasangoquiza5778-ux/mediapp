@@ -4,3 +4,4 @@ Add placeholder helper
 Add serializer stub
 Add view stub
 Add URL stub
+Add model stub
