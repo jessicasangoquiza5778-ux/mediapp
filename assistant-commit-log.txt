@@ -1,1 +1,2 @@
 Add commit log
+Add README note
