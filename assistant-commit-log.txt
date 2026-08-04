@@ -3,3 +3,4 @@ Add README note
 Add placeholder helper
 Add serializer stub
 Add view stub
+Add URL stub
