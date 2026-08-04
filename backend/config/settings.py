@@ -78,6 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'HOST': '192.168.1.50',  # la IP fija de la compañera con Fedora
+        'PORT': '5432',
     }
 }
 
