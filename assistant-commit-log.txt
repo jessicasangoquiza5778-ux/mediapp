@@ -13,3 +13,4 @@ Update config note
 Improve log entry
 Add mobile note
 Add frontend note
+Add backend note
