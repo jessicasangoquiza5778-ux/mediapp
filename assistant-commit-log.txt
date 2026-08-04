@@ -2,3 +2,4 @@ Add commit log
 Add README note
 Add placeholder helper
 Add serializer stub
+Add view stub
