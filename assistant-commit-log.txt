@@ -10,3 +10,4 @@ Add test stub
 Add docs note
 Update README note
 Update config note
+Improve log entry
