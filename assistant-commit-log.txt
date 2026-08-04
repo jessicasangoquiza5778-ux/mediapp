@@ -1,2 +1,3 @@
 Add commit log
 Add README note
+Add placeholder helper
