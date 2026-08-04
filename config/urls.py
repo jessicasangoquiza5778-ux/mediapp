@@ -25,5 +25,10 @@ urlpatterns = [
     path('pacientes/', include('clientes.urls')),
     path('citas/', include('citas.urls')),
     path('comprobante/', include('comprobante.urls')),
+<<<<<<< HEAD
     path('doctores/', include('doctores.urls')),   
+=======
+    path('vehiculos/', include('vehiculos.urls')),
+
+>>>>>>> 1202f29e15e6b23c36731802827219846ffe1323
 ]

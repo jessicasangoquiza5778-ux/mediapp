@@ -1,0 +1,65 @@
+{% load static %}
+{% include 'private/header.html' %}
+
+<div class="container mt-4">
+    <h2>Listado de Vehículos</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div id="mensaje-alerta" class="alert alert-{{ message.tags }} text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <br>
+    <a href="{% url 'crear_vehiculos' %}" class="btn btn-success">Nuevo Vehículo</a>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>PLACA</th>
+            <th>MARCA</th>
+            <th>MODELO</th>
+            <th>AÑO</th>
+            <th>COLOR</th>
+            <th>TIPO</th>
+            <th>ESTADO</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vehiculo in vehiculos %}
+        <tr>
+            <td>{{ vehiculo.id }}</td>
+            <td>{{ vehiculo.placa_vehiculo }}</td>
+            <td>{{ vehiculo.marca_vehiculo }}</td>
+            <td>{{ vehiculo.modelo_vehiculo }}</td>
+            <td>{{ vehiculo.anio_vehiculo }}</td>
+            <td>{{ vehiculo.color_vehiculo }}</td>
+            <td>{{ vehiculo.tipo_vehiculo }}</td>
+            <td>{{ vehiculo.estado_vehiculo }}</td>
+            <td>
+                <a href="{% url 'editar_vehiculos' vehiculo.id %}" class="btn btn-sm btn-warning rounded-pill">Editar</a>
+                <a href="{% url 'eliminar_vehiculos' vehiculo.id %}" class="btn btn-sm btn-danger rounded-pill"
+                   onclick="return confirm('¿Estás seguro de eliminar este vehículo?');">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9" class="alert alert-danger text-center">No se encuentran vehículos registrados</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    setTimeout(function() {
+        let alerta = document.getElementById("mensaje-alerta");
+        if (alerta) alerta.style.display = "none";
+    }, 5000);
+</script>
+
+{% include 'private/footer.html' %}

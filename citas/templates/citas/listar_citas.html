@@ -1,9 +1,7 @@
 {% load static %}
 {% include 'private/header.html' %}
-<div class="container mt-4">
-    <h2>Listado de Citas</h2>
-    <a href="{% url 'registrar_cita' %}" class="btn btn-success mb-3">+ Nueva Cita</a>
 
+<<<<<<< HEAD
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -39,5 +37,179 @@
             {% endfor %}
         </tbody>
     </table>
+=======
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">📅 Listado de Citas</h2>
+        <a href="{% url 'registrar_cita' %}" class="btn btn-success rounded-pill px-4 shadow-sm">
+            + Nueva Cita
+        </a>
+    </div>
+
+    <!-- Tarjetas de estadísticas -->
+    <div class="row g-3 mb-4 justify-content-center">
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-white border-0 rounded-4 stat-card stat-total">
+                <div class="card-body text-center py-2">
+                    <div class="stat-icon mb-1">📋</div>
+                    <h6 class="text-uppercase opacity-75 mb-0" style="font-size: 0.7rem; letter-spacing: 0.5px;">Total Citas</h6>
+                    <h3 class="fw-bold mb-0">{{ citas|length }}</h3>
+                </div>
+            </div>
+        </div>
+
+        {% regroup citas|dictsort:"estado" by estado as estados_agrupados %}
+        {% for grupo in estados_agrupados %}
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-white border-0 rounded-4 stat-card
+                {% if grupo.grouper|lower == 'pendiente' %} stat-pendiente
+                {% elif grupo.grouper|lower == 'confirmada' %} stat-confirmada
+                {% elif grupo.grouper|lower == 'atendida' %} stat-atendida
+                {% elif grupo.grouper|lower == 'cancelada' %} stat-cancelada
+                {% else %} stat-otro
+                {% endif %}">
+                <div class="card-body text-center py-2">
+                    <div class="stat-icon mb-1">
+                        {% if grupo.grouper|lower == 'pendiente' %} ⏳
+                        {% elif grupo.grouper|lower == 'confirmada' %} ✅
+                        {% elif grupo.grouper|lower == 'atendida' %} 🏁
+                        {% elif grupo.grouper|lower == 'cancelada' %} ❌
+                        {% else %} 📌
+                        {% endif %}
+                    </div>
+                    <h6 class="text-uppercase opacity-75 mb-0" style="font-size: 0.7rem; letter-spacing: 0.5px;">{{ grupo.grouper }}</h6>
+                    <h3 class="fw-bold mb-0">{{ grupo.list|length }}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Tabla de citas -->
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>CLIENTE</th>
+                        <th>SERVICIO</th>
+                        <th>FECHA</th>
+                        <th>HORA</th>
+                        <th>ESTADO</th>
+                        <th class="text-center">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cita in citas %}
+                    <tr>
+                        <td>#{{ cita.id }}</td>
+                        <td>{{ cita.cliente }}</td>
+                        <td>{{ cita.servicio }}</td>
+                        <td>{{ cita.fecha }}</td>
+                        <td>{{ cita.hora }}</td>
+                        <td>
+                            <span class="badge rounded-pill px-3 py-2
+                                {% if cita.estado|lower == 'pendiente' %} bg-warning text-dark
+                                {% elif cita.estado|lower == 'confirmada' %} bg-info text-white
+                                {% elif cita.estado|lower == 'atendida' %} bg-success
+                                {% elif cita.estado|lower == 'cancelada' %} bg-danger
+                                {% else %} bg-secondary
+                                {% endif %}">
+                                {{ cita.estado }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <a href="{% url 'editar_cita' cita.id %}" class="btn btn-sm btn-warning rounded-pill">
+                                ✏️ Editar
+                            </a>
+                            <a href="{% url 'eliminar_cita' cita.id %}"
+                               class="btn btn-sm btn-danger rounded-pill"
+                               onclick="return confirm('¿Estás seguro de eliminar esta cita?');">
+                                🗑️ Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">No hay citas registradas.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+>>>>>>> 1202f29e15e6b23c36731802827219846ffe1323
 </div>
+
+<style>
+.stat-card {
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.stat-card:hover::before {
+    left: 125%;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+.stat-card:hover .stat-icon {
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%   { transform: translateY(0); }
+    30%  { transform: translateY(-6px) rotate(-8deg); }
+    60%  { transform: translateY(0) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Mismos colores que los badges de la tabla */
+.stat-total {
+    background: linear-gradient(135deg, #6c757d, #495057);
+}
+.stat-pendiente {
+    background: linear-gradient(135deg, #ffc107, #ffca2c);
+    color: #212529 !important;
+}
+.stat-confirmada {
+    background: linear-gradient(135deg, #0dcaf0, #31d2f2);
+}
+.stat-atendida {
+    background: linear-gradient(135deg, #198754, #20c997);
+}
+.stat-cancelada {
+    background: linear-gradient(135deg, #dc3545, #e35d6a);
+}
+.stat-otro {
+    background: linear-gradient(135deg, #6c757d, #495057);
+}
+</style>
+
 {% include 'private/footer.html' %}
