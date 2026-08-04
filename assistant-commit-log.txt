@@ -7,3 +7,4 @@ Add URL stub
 Add model stub
 Add admin stub
 Add test stub
+Add docs note
