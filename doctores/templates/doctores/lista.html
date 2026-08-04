@@ -1,0 +1,42 @@
+{% load static %}
+{% include 'private/header.html' %}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Lista de Doctores</h1>
+    <a href="{% url 'crear_doctor' %}" class="btn btn-primary mb-3">Nuevo Doctor</a>
+    <div class="card mb-4">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cédula</th>
+                        <th>Especialidad</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doctor in doctores %}
+                    <tr>
+                        <td>{{ doctor.nombre_doctor }} {{ doctor.apellido_doctor }}</td>
+                        <td>{{ doctor.cedula_doctor }}</td>
+                        <td>{{ doctor.especialidad }}</td>
+                        <td>{{ doctor.telefono_doctor }}</td>
+                        <td>{{ doctor.correo_doctor }}</td>
+                        <td>{{ doctor.estado_doctor }}</td>
+                        <td>
+                            <a href="{% url 'editar_doctor' doctor.pk %}" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="{% url 'eliminar_doctor' doctor.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% include 'private/footer.html' %}

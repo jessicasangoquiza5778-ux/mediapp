@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ALINEACION TOTAL</title>
+    <title>MedAgenda</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -45,52 +45,6 @@
     <!-- Spinner End -->
 
 
-    <!-- Topbar Start -->
-    <div class="container-fluid topbar-elite p-0">
-        <div class="row gx-0 d-none d-lg-flex">
-
-            <div class="col-lg-7 px-5 text-start">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>Av. Miguel Iturralde 45, Latacunga, Ecuador</small>
-                </div>
-
-                <div class="h-100 d-inline-flex align-items-center py-3">
-                    <small class="far fa-clock text-primary me-2"></small>
-                    <small>Lunes a Sábado: 08:00 AM - 06:00 PM</small>
-                </div>
-            </div>
-
-            <div class="col-lg-5 px-5 text-end">
-
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                    <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small class="topbar-hotline">
-                        Agenda rápida: 0996258155
-                    </small>
-                </div>
-
-                <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square topbar-social me-1" href="#" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-
-                    <a class="btn btn-sm-square topbar-social me-1" href="#" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-
-                    <a class="btn btn-sm-square topbar-social me-0" href="#" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 main-navbar">
 
@@ -98,8 +52,8 @@
             class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 
             <h2 class="m-0 text-primary brand-title">
-                <i class="fa fa-car me-3"></i>
-                Alineación Total
+                <i class="fas fa-notes-medical me-3"></i>
+                MedAgenda
             </h2>
 
         </a>
@@ -121,59 +75,6 @@
                 <a href="{% url 'index' %}"
                     class="nav-item nav-link active">
                     Inicio
-                </a>
-
-
-                <a href="{% url 'about' %}"
-                    class="nav-item nav-link">
-                    Sobre Nosotros
-                </a>
-
-
-                <a href="{% url 'servicios' %}"
-                    class="nav-item nav-link">
-                    Servicios
-                </a>
-
-
-                <div class="nav-item dropdown">
-
-                    <a href="#"
-                        class="nav-link dropdown-toggle"
-                        data-bs-toggle="dropdown">
-
-                        Páginas
-
-                    </a>
-
-
-                    <div class="dropdown-menu fade-up m-0">
-
-                        <a href="{% url 'booking' %}"
-                            class="dropdown-item">
-                            Reservas
-                        </a>
-
-
-                        <a href="{% url 'tecnicos' %}"
-                            class="dropdown-item">
-                            Técnicos
-                        </a>
-
-
-                        <a href="{% url 'testimonio' %}"
-                            class="dropdown-item">
-                            Testimonial
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <a href="{% url 'contact' %}"
-                    class="nav-item nav-link">
-                    Contacto
                 </a>
 
             </div>

@@ -11,7 +11,7 @@
                         <div class="card-header bg-warning text-dark py-3">
                             <h2 class="mb-0">
                                 <i class="bi bi-pencil-square me-2"></i>
-                                Editar Cliente
+                                Editar Pacientes
                             </h2>
                         </div>
 
@@ -24,27 +24,27 @@
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold">Nombre</label>
                                         <input type="text"
-                                               name="nombreClienteEdit"
+                                               name="nombrePacientesEdit"
                                                class="form-control"
-                                               value="{{ cliente.nombre_cliente }}"
+                                               value="{{ Pacientes.nombre_Pacientes }}"
                                                required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold">Apellido</label>
                                         <input type="text"
-                                               name="apellidoClienteEdit"
+                                               name="apellidoPacientesEdit"
                                                class="form-control"
-                                               value="{{ cliente.apellido_cliente }}"
+                                               value="{{ Pacientes.apellido_Pacientes }}"
                                                required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold">Cédula</label>
                                         <input type="text"
-                                               name="cedulaClienteEdit"
+                                               name="cedulaPacientesEdit"
                                                class="form-control"
-                                               value="{{ cliente.cedula_cliente }}"
+                                               value="{{ Pacientes.cedula_Pacientes }}"
                                                maxlength="10"
                                                required>
                                     </div>
@@ -52,9 +52,9 @@
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold">Teléfono</label>
                                         <input type="text"
-                                               name="telefonoClienteEdit"
+                                               name="telefonoPacientesEdit"
                                                class="form-control"
-                                               value="{{ cliente.telefono_cliente }}"
+                                               value="{{ Pacientes.telefono_Pacientes }}"
                                                maxlength="10"
                                                required>
                                     </div>
@@ -62,22 +62,22 @@
                                     <div class="col-12">
                                         <label class="form-label fw-semibold">Dirección</label>
                                         <input type="text"
-                                               name="direccionClienteEdit"
+                                               name="direccionPacientesEdit"
                                                class="form-control"
-                                               value="{{ cliente.direccion_cliente }}"
+                                               value="{{ Pacientes.direccion_Pacientes }}"
                                                required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold">Estado</label>
-                                        <select name="estadoClienteEdit" class="form-select" required>
+                                        <select name="estadoPacientesEdit" class="form-select" required>
                                             <option value="activo"
-                                                {% if cliente.estado_cliente == 'activo' %}selected{% endif %}>
+                                                {% if Pacientes.estado_Pacientes == 'activo' %}selected{% endif %}>
                                                 Activo
                                             </option>
 
                                             <option value="inactivo"
-                                                {% if cliente.estado_cliente == 'inactivo' %}selected{% endif %}>
+                                                {% if Pacientes.estado_Pacientes == 'inactivo' %}selected{% endif %}>
                                                 Inactivo
                                             </option>
                                         </select>
@@ -88,7 +88,7 @@
                                 <hr class="my-4">
 
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="{% url 'listar_clientes' %}"
+                                    <a href="{% url 'listar_Pacientes' %}"
                                        class="btn btn-outline-danger rounded-pill px-4">
                                         <i class="bi bi-x-circle me-1"></i>
                                         CANCELAR

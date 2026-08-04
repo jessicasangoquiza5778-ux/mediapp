@@ -13,13 +13,13 @@ def crear_comprobante(request):
     if request.method == 'POST':
         numero_comprobante = request.POST['numero_comprobante']
         fecha = request.POST['fecha']
-        cliente = request.POST['cliente']
+        Pacientes = request.POST['Pacientes']
         descripcion = request.POST['descripcion']
         total = request.POST['total']
         ComprobanteServicio.objects.create(
             numero_comprobante=numero_comprobante,
             fecha=fecha,
-            cliente=cliente,
+            Pacientes=Pacientes,
             descripcion=descripcion,
             total=total
         )
@@ -31,7 +31,7 @@ def editar_comprobante(request, pk):
     if request.method == 'POST':
         comprobante.numero_comprobante = request.POST['numero_comprobante']
         comprobante.fecha = request.POST['fecha']
-        comprobante.cliente = request.POST['cliente']
+        comprobante.Pacientes = request.POST['Pacientes']
         comprobante.descripcion = request.POST['descripcion']
         comprobante.total = request.POST['total']
         comprobante.save()

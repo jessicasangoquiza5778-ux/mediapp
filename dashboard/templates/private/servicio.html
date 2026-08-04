@@ -11,36 +11,35 @@
                         <!-- Encabezado -->
                         <div class="text-center mb-5">
                             <h1 class="display-4 font-weight-bold" style="color: #1a237e;">
-                                <i class="fas fa-wrench text-warning"></i> Nuestros Servicios
+                                <i class="fas fa-notes-medical text-danger"></i> Nuestros Servicios
                             </h1>
-                            <p class="text-muted lead">Conoce todos los servicios que ofrecemos para tu vehículo</p>
-                            <hr class="w-25 mx-auto" style="border-top: 3px solid #ffc107;">
+                            <p class="text-muted lead">Conoce todos los servicios médicos que ofrecemos</p>
+                            <hr class="w-25 mx-auto" style="border-top: 3px solid #dc3545;">
                         </div>
 
-                        <!-- Servicio 1: Alineación -->
+                        <!-- Servicio 1: Consulta General -->
                         <div class="card shadow-sm mb-4 border-0">
-                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('alineacion')">
+                            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('consultaGeneral')">
                                 <h4 class="mb-0">
-                                    <i class="fas fa-car-side"></i> Alineación de Ruedas
+                                    <i class="fas fa-stethoscope"></i> Consulta General
                                 </h4>
                                 <span class="badge badge-light p-2"> Ver precios</span>
                             </div>
-                            <div id="alineacion" style="display: none;">
+                            <div id="consultaGeneral" style="display: none;">
                                 <div class="card-body">
-                                    <p class="text-muted">Alineación precisa para todo tipo de vehículos. Garantizamos el mejor rendimiento y durabilidad de tus neumáticos.</p>
+                                    <p class="text-muted">Atención médica general para diagnóstico, seguimiento y tratamiento de enfermedades comunes.</p>
                                     <div class="table-responsive">
                                         <table class="table table-hover table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th>Tipo de Vehículo</th>
+                                                    <th>Tipo de Consulta</th>
                                                     <th>Precio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>🚗 Automóvil</td><td><strong>$10.00</strong></td></tr>
-                                                <tr><td>🚙 Camioneta</td><td><strong>$10.00</strong></td></tr>
-                                                <tr><td>🚐 Furgoneta</td><td><strong>$12.00</strong></td></tr>
-                                                <tr><td>🚛 Camión</td><td><strong>$15.00</strong></td></tr>
+                                                <tr><td>🩺 Consulta de primera vez</td><td><strong>$25.00</strong></td></tr>
+                                                <tr><td>🔁 Consulta de seguimiento</td><td><strong>$15.00</strong></td></tr>
+                                                <tr><td>🚨 Consulta de urgencia</td><td><strong>$35.00</strong></td></tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -48,30 +47,30 @@
                             </div>
                         </div>
 
-                        <!-- Servicio 2: Balanceo -->
+                        <!-- Servicio 2: Consulta Especializada -->
                         <div class="card shadow-sm mb-4 border-0">
-                            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('balanceo')">
+                            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('especializada')">
                                 <h4 class="mb-0">
-                                    <i class="fas fa-balance-scale"></i> Balanceo de Ruedas
+                                    <i class="fas fa-user-md"></i> Consulta Especializada
                                 </h4>
                                 <span class="badge badge-light p-2"> Ver precios</span>
                             </div>
-                            <div id="balanceo" style="display: none;">
+                            <div id="especializada" style="display: none;">
                                 <div class="card-body">
-                                    <p class="text-muted">Balanceo profesional para eliminar vibraciones y mejorar la estabilidad de tu vehículo.</p>
+                                    <p class="text-muted">Atención con médicos especialistas según el área que necesites.</p>
                                     <div class="table-responsive">
                                         <table class="table table-hover table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th>Tipo de Vehículo</th>
+                                                    <th>Especialidad</th>
                                                     <th>Precio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>🚗 Automóvil</td><td><strong>$10.00</strong></td></tr>
-                                                <tr><td>🚙 Camioneta</td><td><strong>$10.00</strong></td></tr>
-                                                <tr><td>🚐 Furgoneta</td><td><strong>$12.00</strong></td></tr>
-                                                <tr><td>🚛 Camión</td><td><strong>$15.00</strong></td></tr>
+                                                <tr><td>❤️ Cardiología</td><td><strong>$40.00</strong></td></tr>
+                                                <tr><td>👶 Pediatría</td><td><strong>$30.00</strong></td></tr>
+                                                <tr><td>🦴 Traumatología</td><td><strong>$35.00</strong></td></tr>
+                                                <tr><td>🧠 Neurología</td><td><strong>$45.00</strong></td></tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -79,30 +78,29 @@
                             </div>
                         </div>
 
-                        <!-- Servicio 3: Alineación + Balanceo -->
+                        <!-- Servicio 3: Paquete Chequeo General -->
                         <div class="card shadow-sm mb-4 border-0">
-                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('combo')">
+                            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('chequeo')">
                                 <h4 class="mb-0">
-                                    <i class="fas fa-object-group"></i> Alineación + Balanceo (Combo)
+                                    <i class="fas fa-clipboard-check"></i> Chequeo General (Paquete)
                                 </h4>
                                 <span class="badge badge-dark p-2"> Ver precios</span>
                             </div>
-                            <div id="combo" style="display: none;">
+                            <div id="chequeo" style="display: none;">
                                 <div class="card-body">
-                                    <p class="text-muted">El paquete completo para un mantenimiento óptimo de tus neumáticos. ¡Ahorra con este combo!</p>
+                                    <p class="text-muted">Paquete completo de evaluación médica preventiva. ¡Ahorra con este combo!</p>
                                     <div class="table-responsive">
                                         <table class="table table-hover table-bordered">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th>Tipo de Vehículo</th>
+                                                    <th>Paquete</th>
                                                     <th>Precio</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>🚗 Automóvil</td><td><strong>$15.00</strong></td></tr>
-                                                <tr><td>🚙 Camioneta</td><td><strong>$17.00</strong></td></tr>
-                                                <tr><td>🚐 Furgoneta</td><td><strong>$20.00</strong></td></tr>
-                                                <tr><td>🚛 Camión</td><td><strong>$25.00</strong></td></tr>
+                                                <tr><td>🩺 Chequeo básico</td><td><strong>$45.00</strong></td></tr>
+                                                <tr><td>🧪 Chequeo con laboratorio</td><td><strong>$70.00</strong></td></tr>
+                                                <tr><td>📋 Chequeo completo (todo incluido)</td><td><strong>$95.00</strong></td></tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -123,23 +121,23 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="card border-0 bg-light p-3 text-center">
-                                                <i class="fas fa-tools fa-2x text-primary"></i>
-                                                <h5>Enlantale</h5>
-                                                <p class="text-muted">$1.50</p>
+                                                <i class="fas fa-vials fa-2x text-primary"></i>
+                                                <h5>Laboratorio</h5>
+                                                <p class="text-muted">$15.00</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card border-0 bg-light p-3 text-center">
-                                                <i class="fas fa-wind fa-2x text-success"></i>
-                                                <h5>Nitrógeno</h5>
-                                                <p class="text-muted">$1.50</p>
+                                                <i class="fas fa-syringe fa-2x text-success"></i>
+                                                <h5>Vacunas</h5>
+                                                <p class="text-muted">$10.00</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card border-0 bg-light p-3 text-center">
-                                                <i class="fas fa-patch fa-2x text-warning"></i>
-                                                <h5>Parches</h5>
-                                                <p class="text-muted">$1.00</p>
+                                                <i class="fas fa-file-medical fa-2x text-warning"></i>
+                                                <h5>Certificados médicos</h5>
+                                                <p class="text-muted">$8.00</p>
                                             </div>
                                         </div>
                                     </div>
@@ -147,23 +145,23 @@
                             </div>
                         </div>
 
-                        <!-- Correcciones -->
+                        <!-- Emergencias -->
                         <div class="card shadow-sm mb-4 border-0">
-                            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('correcciones')">
+                            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center" style="cursor: pointer;" onclick="toggleServicio('emergencias')">
                                 <h4 class="mb-0">
-                                    <i class="fas fa-arrows-alt"></i> Correcciones
+                                    <i class="fas fa-ambulance"></i> Emergencias
                                 </h4>
                                 <span class="badge badge-light p-2"> Ver detalles</span>
                             </div>
-                            <div id="correcciones" style="display: none;">
+                            <div id="emergencias" style="display: none;">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <ul class="list-group">
-                                                <li class="list-group-item"><i class="fas fa-arrow-left text-primary"></i> Delantera Izquierda</li>
-                                                <li class="list-group-item"><i class="fas fa-arrow-right text-primary"></i> Delantera Derecha</li>
-                                                <li class="list-group-item"><i class="fas fa-arrow-left text-warning"></i> Posterior Izquierda</li>
-                                                <li class="list-group-item"><i class="fas fa-arrow-right text-warning"></i> Posterior Derecha</li>
+                                                <li class="list-group-item"><i class="fas fa-heartbeat text-danger"></i> Atención inmediata</li>
+                                                <li class="list-group-item"><i class="fas fa-band-aid text-danger"></i> Primeros auxilios</li>
+                                                <li class="list-group-item"><i class="fas fa-hospital text-danger"></i> Derivación a especialista</li>
+                                                <li class="list-group-item"><i class="fas fa-phone text-danger"></i> Línea de atención 24/7</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -190,4 +188,4 @@
 </script>
 
 
-{% include 'private/footer.html' %} 
+{% include 'private/footer.html' %}

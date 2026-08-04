@@ -9,7 +9,7 @@
                 <div class="card-header bg-primary text-white py-3">
                     <h2 class="mb-0">
                         <i class="bi bi-person-plus-fill me-2"></i>
-                        Inserta tus Clientes
+                        Inserta tus Pacientes
                     </h2>
                 </div>
 
@@ -22,7 +22,7 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Nombre</label>
                                 <input type="text"
-                                       name="nombreCliente"
+                                       name="nombrePacientes"
                                        class="form-control"
                                        placeholder="Ej: Juan"
                                        required>
@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Apellido</label>
                                 <input type="text"
-                                       name="apellidoCliente"
+                                       name="apellidoPacientes"
                                        class="form-control"
                                        placeholder="Ej: Pérez"
                                        required>
@@ -40,7 +40,7 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Cédula</label>
                                 <input type="text"
-                                       name="cedulaCliente"
+                                       name="cedulaPacientes"
                                        class="form-control"
                                        maxlength="10"
                                        placeholder="10 dígitos"
@@ -50,7 +50,7 @@
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Teléfono</label>
                                 <input type="text"
-                                       name="telefonoCliente"
+                                       name="telefonoPacientes"
                                        class="form-control"
                                        maxlength="10"
                                        placeholder="Ej: 0991234567"
@@ -60,7 +60,7 @@
                             <div class="col-12">
                                 <label class="form-label fw-semibold">Dirección</label>
                                 <input type="text"
-                                       name="direccionCliente"
+                                       name="direccionPacientes"
                                        class="form-control"
                                        placeholder="Calle, número, sector"
                                        required>
@@ -68,7 +68,7 @@
 
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Estado</label>
-                                <select name="estadoCliente" class="form-select">
+                                <select name="estadoPacientes" class="form-select">
                                     <option value="">Seleccione</option>
                                     <option value="activo">Activo</option>
                                     <option value="inactivo">Inactivo</option>
@@ -80,7 +80,7 @@
                         <hr class="my-4">
 
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="{% url 'listar_clientes' %}" class="btn btn-outline-danger px-4">
+                            <a href="{% url 'listar_Pacientes' %}" class="btn btn-outline-danger px-4">
                                 <i class="bi bi-x-circle me-1"></i>
                                 CANCELAR
                             </a>

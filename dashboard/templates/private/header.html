@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Alineación Total</title>
+    <title>MedAgenda</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{% static 'private/css/styles.css' %}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -17,7 +17,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="{% url 'dashboard' %}">Alineación Total</a>
+        <a class="navbar-brand ps-3" href="{% url 'dashboard' %}">MedAgenda</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -56,24 +56,11 @@
                             Usuario
                         </a>
 
-                        <a class="nav-link collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Nueva orden
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        <a class="nav-link" href="{% url 'listar_citas' %}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                            Historial de Citas
                         </a>
-                        <div class="collapse" id="collapseLayouts">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{% url 'orden_trabajo' %}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
-                                    Orden de trabajo
-                                </a>
-                                <a class="nav-link" href="{% url 'lista_comprobantes' %}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
-                                    Comprobante de Servicio
-                                </a>
-                            </nav>
-                        </div>
+
                         <a class="nav-link" href="{% url 'servicio' %}">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Servicio
@@ -82,17 +69,23 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                             Productos
                         </a>
-                        <a class="nav-link" href="{% url 'listar_clientes' %}">
+                        <a class="nav-link" href="{% url 'listar_Pacientes' %}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-user"></i>
                             </div>
-                            Clientes
+                            Pacientes
                         </a>
                         <a class="nav-link" href="{% url 'listar_citas' %}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                             Citas
+                        </a>
+                        <a class="nav-link" href="{% url 'lista_doctores' %}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            Doctores
                         </a>
                     </div>
                 </div>

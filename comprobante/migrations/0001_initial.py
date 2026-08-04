@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('numero_comprobante', models.CharField(max_length=50)),
                 ('fecha', models.DateField()),
-                ('cliente', models.CharField(max_length=100)),
+                ('Pacientes', models.CharField(max_length=100)),
                 ('descripcion', models.TextField()),
                 ('total', models.DecimalField(decimal_places=2, max_digits=10)),
             ],

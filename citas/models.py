@@ -1,5 +1,5 @@
 from django.db import models
-from clientes.models import Cliente
+from clientes.models import Pacientes
 
 class Cita(models.Model):
     ESTADOS = [
@@ -9,7 +9,7 @@ class Cita(models.Model):
         ('cancelada', 'Cancelada'),
     ]
 
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(Pacientes, on_delete=models.CASCADE)
     servicio = models.CharField(max_length=100)
     fecha = models.DateField()
     hora = models.TimeField()
@@ -17,4 +17,4 @@ class Cita(models.Model):
     observaciones = models.TextField(blank=True)
 
     def __str__(self):
-        return f"Cita de {self.cliente} - {self.fecha} {self.hora}"
+        return f"Cita de {self.paciente} - {self.fecha} {self.hora}"

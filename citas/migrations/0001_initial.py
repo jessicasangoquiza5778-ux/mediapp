@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('hora', models.TimeField()),
                 ('estado', models.CharField(choices=[('pendiente', 'Pendiente'), ('confirmada', 'Confirmada'), ('atendida', 'Atendida'), ('cancelada', 'Cancelada')], default='pendiente', max_length=20)),
                 ('observaciones', models.TextField(blank=True)),
-                ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='clientes.cliente')),
+                ('paciente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='clientes.pacientes')),
             ],
         ),
     ]

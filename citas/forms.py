@@ -4,9 +4,9 @@ from .models import Cita
 class CitaForm(forms.ModelForm):
     class Meta:
         model = Cita
-        fields = ['cliente', 'servicio', 'fecha', 'hora', 'estado', 'observaciones']
+        fields = ['paciente', 'servicio', 'fecha', 'hora', 'estado', 'observaciones']
         widgets = {
-            'cliente': forms.Select(attrs={'class': 'form-select'}),
+            'paciente': forms.Select(attrs={'class': 'form-select'}),
             'servicio': forms.TextInput(attrs={'class': 'form-control'}),
             'fecha': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'hora': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}),

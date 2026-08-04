@@ -2,7 +2,7 @@
 {% include 'private/header.html' %}
 
 <div class="container mt-4">
-    <h2>Listado de Clientes</h2>
+    <h2>Listado de Pacientes</h2>
 
     {% if messages %}
         {% for message in messages %}
@@ -15,8 +15,8 @@
 
     <br>
 
-    <a href="{% url 'registrar_clientes' %}" class="btn btn-success">
-        Nuevo Cliente
+    <a href="{% url 'registrar_Pacientes' %}" class="btn btn-success">
+        Nuevo Pacientes
     </a>
 </div>
 
@@ -35,24 +35,24 @@
     </thead>
 
     <tbody>
-        {% for cliente in clientes %}
+        {% for Pacientes in Pacientes %}
         <tr>
-            <td>{{ cliente.id }}</td>
-            <td>{{ cliente.nombre_cliente }}</td>
-            <td>{{ cliente.apellido_cliente }}</td>
-            <td>{{ cliente.cedula_cliente }}</td>
-            <td>{{ cliente.telefono_cliente }}</td>
-            <td>{{ cliente.direccion_cliente }}</td>
-            <td>{{ cliente.estado_cliente }}</td>
+            <td>{{ Pacientes.id }}</td>
+            <td>{{ Pacientes.nombre_Pacientes }}</td>
+            <td>{{ Pacientes.apellido_Pacientes }}</td>
+            <td>{{ Pacientes.cedula_Pacientes }}</td>
+            <td>{{ Pacientes.telefono_Pacientes }}</td>
+            <td>{{ Pacientes.direccion_Pacientes }}</td>
+            <td>{{ Pacientes.estado_Pacientes }}</td>
             <td>
-                <a href="{% url 'editar_clientes' cliente.id %}"
+                <a href="{% url 'editar_Pacientes' Pacientes.id %}"
                    class="btn btn-sm btn-warning rounded-pill">
                     Editar
                 </a>
 
-                <a href="{% url 'eliminar_clientes' cliente.id %}"
+                <a href="{% url 'eliminar_Pacientes' Pacientes.id %}"
                    class="btn btn-sm btn-danger rounded-pill"
-                   onclick="return confirm('¿Estás seguro de eliminar este cliente?');">
+                   onclick="return confirm('¿Estás seguro de eliminar este Pacientes?');">
                     Eliminar
                 </a>
             </td>

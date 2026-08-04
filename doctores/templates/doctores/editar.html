@@ -1,0 +1,48 @@
+{% load static %}
+{% include 'private/header.html' %}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Editar Doctor</h1>
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre_doctor" class="form-control" value="{{ doctor.nombre_doctor }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Apellido</label>
+                    <input type="text" name="apellido_doctor" class="form-control" value="{{ doctor.apellido_doctor }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Cédula</label>
+                    <input type="text" name="cedula_doctor" class="form-control" value="{{ doctor.cedula_doctor }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Especialidad</label>
+                    <input type="text" name="especialidad" class="form-control" value="{{ doctor.especialidad }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Teléfono</label>
+                    <input type="text" name="telefono_doctor" class="form-control" value="{{ doctor.telefono_doctor }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Correo</label>
+                    <input type="email" name="correo_doctor" class="form-control" value="{{ doctor.correo_doctor }}">
+                </div>
+                <div class="mb-3">
+                    <label>Estado</label>
+                    <select name="estado_doctor" class="form-control">
+                        <option value="activo" {% if doctor.estado_doctor == 'activo' %}selected{% endif %}>Activo</option>
+                        <option value="inactivo" {% if doctor.estado_doctor == 'inactivo' %}selected{% endif %}>Inactivo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <a href="{% url 'lista_doctores' %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'private/footer.html' %}

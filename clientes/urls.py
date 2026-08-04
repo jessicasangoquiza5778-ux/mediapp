@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.listar_clientes, name='listar_clientes'),
-    path('registrar_clientes/', views.registrar_clientes, name='registrar_clientes'),
-    path('editar_clientes/<int:id>/', views.editar_clientes, name='editar_clientes'),
-    path('eliminar_clientes/<int:id>/', views.eliminar_clientes, name='eliminar_clientes'),
+    path('', views.listar_Pacientes, name='listar_Pacientes'),
+    path('registrar_Pacientes/', views.registrar_Pacientes, name='registrar_Pacientes'),
+    path('editar_Pacientes/<int:id>/', views.editar_Pacientes, name='editar_Pacientes'),
+    path('eliminar_Pacientes/<int:id>/', views.eliminar_Pacientes, name='eliminar_Pacientes'),
 ]
