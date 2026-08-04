@@ -8,3 +8,4 @@ Add model stub
 Add admin stub
 Add test stub
 Add docs note
+Update README note
