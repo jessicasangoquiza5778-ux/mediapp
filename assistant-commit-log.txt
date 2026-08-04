@@ -16,3 +16,4 @@ Add frontend note
 Add backend note
 Add user note
 Add product note
+Add category note
